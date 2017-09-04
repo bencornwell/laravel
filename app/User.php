@@ -34,4 +34,21 @@ class User extends Authenticatable
     {
     	return $this->hasMany(Task::class);
     }
+
+    public function roles( )
+    {
+        return $this->hasMany(Role::class);
+    }
+
+    public function is( $roleName )
+    {
+        foreach( $this->roles( )->get( ) as $role )
+        {
+            if( $role->name == $roleName )
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
