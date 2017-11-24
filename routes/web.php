@@ -26,6 +26,14 @@ Route::get( 'logout', 'Auth\LoginController@logout');
 Route::get('auth/register','Auth\AuthController@getRegister');
 Route::post('auth/register','Auth\AuthController@postRegister');
 
+Route::get( 'admin_area', ['middleware' => 'admin', function( ) {
+    Route::any('/appsettings', 'AppsettingsController@index' );
+    Route::post('/appsettings', 'AppsettingsController@store' );
+}]);
+ 
+Route::any('/appsettings', 'AppsettingsController@index' );
+Route::post('/appsettings', 'AppsettingsController@store' );
+
 Route::get('/tasks', 'TaskController@index' );
 Route::post('/task','TaskController@store' );
 Route::delete('/task/{task}', 'TaskController@destroy' );

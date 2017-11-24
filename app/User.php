@@ -37,10 +37,13 @@ class User extends Authenticatable
 
     public function roles( )
     {
-        return $this->hasMany(Role::class);
+        return $this->belongsToMany(Role::class);
     }
 
-    public function is( $roleName )
+    public function isAdmin( ) {
+        return null !== $this->roles()->where('name', 'administrator')->first();
+    }
+    public function is( \Illuminate\Database\Eloquent\Model $roleName )
     {
         foreach( $this->roles( )->get( ) as $role )
         {
