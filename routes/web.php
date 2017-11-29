@@ -34,6 +34,12 @@ Route::get( 'admin_area', ['middleware' => 'admin', function( ) {
 Route::any('/appsettings', 'AppsettingsController@index' );
 Route::post('/appsettings', 'AppsettingsController@store' );
 
+Route::get('/grants', 'GrantController@index' );
+Route::get('/grant/create', 'GrantController@create' );
+Route::post('/grant/create', [ 'as' => 'grant.create', 'uses' => 'GrantController@store' ] );
+Route::get('/grant/edit/{grant}', 'GrantController@edit' );
+Route::post('/grant/edit/{grant}', [ 'as' => 'grant.edit', 'uses' => 'GrantController@update' ] );
+
 Route::get('/tasks', 'TaskController@index' );
 Route::post('/task','TaskController@store' );
 Route::delete('/task/{task}', 'TaskController@destroy' );

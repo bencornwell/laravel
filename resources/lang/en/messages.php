@@ -35,6 +35,10 @@ return [
     'ui.grant_search' => 'Grant Search',
     'ui.grant_reports' => 'Grant Reports',
 
+    'ui.grant_create' => 'Create New Grant Record',
+    'ui.grant_edit' => 'Edit Grant Record',
+    'ui.grant_save' => 'Save Grant Record',
+    'ui.grant_list' => 'Grant List',
 
 ];
 

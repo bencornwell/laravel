@@ -35,6 +35,12 @@ class User extends Authenticatable
     	return $this->hasMany(Task::class);
     }
 
+    public function grants( )
+    {
+        return $this->hasMany(Grant::class);
+    }
+
+
     public function roles( )
     {
         return $this->belongsToMany(Role::class);
