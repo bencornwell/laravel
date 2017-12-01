@@ -40,6 +40,38 @@ return [
     'ui.grant_save' => 'Save Grant Record',
     'ui.grant_list' => 'Grant List',
 
+    'ui.delete' => 'Delete',
+    'ui.search' => 'Search',
+    'ui.change' => 'Change',
+
+    'ui.summary' => 'Summary',
+
+
+    'ui.lead_organisation' => 'Lead Organisation',
+    'ui.project_title' => 'Project Title',
+    'ui.project_status' => 'Project Status',
+    'ui.funding_agency_reference' => 'Funding Agency Reference',
+    'ui.funding_agency' => 'Funding Agency',
+    'ui.grant_program' => 'Grant Program',
+    'ui.project_description' => 'Project Description',
+    'ui.application_date' => 'Application Date',
+    'ui.funder_decision_date' => 'Funder\'s Decision Date',
+    'ui.planned_start_date' => 'Planned Commencement Date',
+    'ui.planned_end_date' => 'Planned Completion Date',
+    'ui.actual_end_date' => 'Actual Completion Date',
+    'ui.relinquished_date' => 'Relinquished Date',
+    'ui.transferred_in_date' => 'Transferred-In Date',
+    'ui.transferred_from' => 'Transferred From',
+    'ui.transferred_out_date' => 'Transferred-Out Date',
+    'ui.transferred_to' => 'Transferred To',
+
+
+    'ui.investigators' => 'Investigators',
+    'ui.organisations' => 'Organisations',
+    'ui.financials' => 'Financials',
+    'ui.documents' => 'Documents',
+    'ui.file_notes' =>  'File Notes',
+    'ui.audit_history' => 'Audit History',
 ];
 
 ?>

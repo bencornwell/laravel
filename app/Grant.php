@@ -53,4 +53,28 @@ class Grant extends Model
     {
         return $this->belongsTo( 'App\User' );
     }
+    public function leadOrganisation( )
+    {
+        return $this->belongsTo( 'App\Organisation' );
+    }
+    public function transferredFromOrganisation( )
+    {
+        return $this->belongsTo( 'App\Organisation' );
+    }
+    public function transferredToOrganisation( )
+    {
+        return $this->belongsTo( 'App\Organisation' );
+    }
+    public function fundingRound( )
+    {
+        return $this->belongsTo( 'App\FundingRound' );
+    }
+    public function fundingScheme( )
+    {
+        return $this->fundingRound( )->first( )->fundingScheme( );
+    }
+    public function fundingAgency( )
+    {
+        return $this->fundingScheme( )->first( )->fundingAgency( );
+    }
 }

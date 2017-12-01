@@ -17,5 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call(AppSettingsSeeder::class);
         $this->call(StatusesTableSeeder::class);
         $this->call(GrantsTableSeeder::class);
+        $this->call(OrganisationsTableSeeder::class);
+        $this->call(FundingRoundTableSeeder::class);
+        $this->call(FundingSchemeTableSeeder::class);
     }
 }

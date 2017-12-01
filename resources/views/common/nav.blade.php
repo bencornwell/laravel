@@ -22,7 +22,7 @@
                 <a href="{{ url('/') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Lang::get('messages.ui.home') }}<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="{{ url('/grant/applications') }}">{{ Lang::get( 'messages.ui.grant_applications' ) }}</a></li>
-                    <li><a href="{{ url('/grant/search') }}">{{ Lang::get( 'messages.ui.grant_search' ) }}</a></li>
+                    <li><a href="{{ url('/grants') }}">{{ Lang::get( 'messages.ui.grant_search' ) }}</a></li>
                     <li><a href="{{ url('/grant/reports') }}">{{ Lang::get( 'messages.ui.grant_reports' ) }}</a></li>
                 </ul>
             </li>
