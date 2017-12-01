@@ -8,20 +8,33 @@
     <div class="form-group">
         {{ Form::label( 'lead_organisation_id', Lang::get( 'messages.ui.lead_organisation' ), [ 'class' => 'col-sm-3 control-label' ] ) }}
         <div class="col-sm-6">
-            {{ $grant->leadOrganisation( )->first( )->name }} &nbsp;&nbsp;
+            @if ($grant)
+                {{ $grant->leadOrganisation( )->first( )->name }} &nbsp;&nbsp;
+            @else
+                {{ Lang::get( 'messages.ui.not_set' ) }}
+            @endif
             {{ Form::button( '<i class="fa fa-btn fa-edit"></i>' . Lang::get('messages.ui.change'), ['class' => 'btn btn-default'] ) }}
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-3 control-label">{{ Lang::get( 'messages.ui.funding_agency' ) }}</label>
         <div class="col-sm-9">
-            {{ $grant->fundingAgency( )->first( )->name }}
+            @if ($grant)
+                {{ $grant->fundingAgency( )->first( )->name }}
+            @else
+                {{ Lang::get( 'messages.ui.not_set' ) }}
+            @endif
         </div>
     </div>
     <div class="form-group">
         {{ Form::label( 'project_title', Lang::get( 'messages.ui.grant_program' ), ['class' => 'col-sm-3 control-label'] ) }}
         <div class="col-sm-9">
-            {{ $grant->fundingRound( )->first( )->fullname( ) }} &nbsp;&nbsp; {{ Form::button( '<i class="fa fa-btn fa-edit"></i>' . Lang::get('messages.ui.change'), ['class' => 'btn btn-default'] ) }}
+            @if ($grant)
+                {{ $grant->fundingRound( )->first( )->fullname( ) }} &nbsp;&nbsp; 
+            @else
+                {{ Lang::get('messages.ui.not_set' ) }}
+           @endif
+           {{ Form::button( '<i class="fa fa-btn fa-edit"></i>' . Lang::get('messages.ui.change'), ['class' => 'btn btn-default'] ) }}
         </div>
     </div>
     <div class="form-group">
@@ -79,7 +92,7 @@
         </div>
         {{ Form::label( 'transferred_in_organisation_id', Lang::get('messages.ui.transferred_from'), ['class' => 'col-sm-3 control-label'] ) }}
         <div class="col-sm-3">
-            @if ($grant->transferredFromOrganisation( )->first( )) 
+            @if ($grant and $grant->transferredFromOrganisation( )->first( )) 
                 {{ $grant->transferredFromOrganisation( )->first( )->name }} &nbsp;&nbsp;
             @endif
             {{ Form::button( '<i class="fa fa-btn fa-edit"></i>' . Lang::get('messages.ui.change'), ['class' => 'btn btn-default'] ) }}
@@ -92,7 +105,7 @@
         </div>
         {{ Form::label( 'transferred_out_organisation_id', Lang::get('messages.ui.transferred_to'), ['class' => 'col-sm-3 control-label'] ) }}
         <div class="col-sm-3">
-            @if ($grant->transferredToOrganisation( )->first( )) 
+            @if ($grant and $grant->transferredToOrganisation( )->first( )) 
                 {{ $grant->transferredToOrganisation( )->first( )->name }} &nbsp;&nbsp;
             @endif
             {{ Form::button( '<i class="fa fa-btn fa-edit"></i>' . Lang::get('messages.ui.change'), ['class' => 'btn btn-default'] ) }}

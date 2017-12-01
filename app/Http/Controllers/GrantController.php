@@ -20,8 +20,9 @@ class GrantController extends Controller
 
     public function index(Request $request )
     {
+        $grants = ( $request->user()->isAdmin( ) ) ? Grant::all( ) : $this->grants->forUser($request->user( ));
         return view('grants.index', [
-            'grants' => $this->grants->forUser($request->user( )),
+            'grants' => $grants
         ]);
     }
 

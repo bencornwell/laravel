@@ -45,6 +45,7 @@ return [
     'ui.change' => 'Change',
 
     'ui.summary' => 'Summary',
+    'ui.not_set' => 'Not set',
 
 
     'ui.lead_organisation' => 'Lead Organisation',
