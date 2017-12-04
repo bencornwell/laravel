@@ -46,9 +46,11 @@ return [
 
     'ui.summary' => 'Summary',
     'ui.not_set' => 'Not set',
+    'ui.cancel' => 'Cancel',
 
 
     'ui.lead_organisation' => 'Lead Organisation',
+    'ui.select_lead_org' => 'Select a Lead Organisation',
     'ui.project_title' => 'Project Title',
     'ui.project_status' => 'Project Status',
     'ui.funding_agency_reference' => 'Funding Agency Reference',

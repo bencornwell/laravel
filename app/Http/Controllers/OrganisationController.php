@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Organisation;
+use App\Datatable\Datatable;
 use Illuminate\Http\Request;
+
 
 class OrganisationController extends Controller
 {
@@ -14,7 +16,13 @@ class OrganisationController extends Controller
      */
     public function index()
     {
-        //
+        $organisations = Organisation::all( );
+        $table = Datatable::create( $organisations, [
+            'columns' => ['id','name','organisation_type_id','country_id'],
+            'column_labels' => ['ID', 'Name','Type','Country'],
+            'actions' => ['return_id' => 'id' ]
+            ]);
+        return view('organisation.modal', [ 'organisations' => $organisations, 'table' => $table ] );
     }
 
     /**

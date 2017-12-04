@@ -13,7 +13,13 @@
             @else
                 {{ Lang::get( 'messages.ui.not_set' ) }}
             @endif
-            {{ Form::button( '<i class="fa fa-btn fa-edit"></i>' . Lang::get('messages.ui.change'), ['class' => 'btn btn-default'] ) }}
+            {{ Form::hidden( 'lead_organisation_id', null ) }}
+            {{ Form::button( '<i class="fa fa-btn fa-edit"></i>' . Lang::get('messages.ui.change'), ['class' => 'btn btn-default', 'id' => 'lead_organisation_change'  ] ) }}
+            <div id="lead_organisation_modal" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content"></div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="form-group">
