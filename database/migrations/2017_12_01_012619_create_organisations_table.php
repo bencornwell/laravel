@@ -17,7 +17,7 @@ class CreateOrganisationsTable extends Migration
             $table->increments('id');
             $table->text('name');
             $table->string('abbreviation');
-            $table->integer( 'organistion_type_id' );
+            $table->integer('organisation_type_id' );
             $table->integer('country_id' );
             $table->string('url');
             $table->string('phone_number');

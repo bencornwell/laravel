@@ -43,6 +43,7 @@ return [
     'ui.delete' => 'Delete',
     'ui.search' => 'Search',
     'ui.change' => 'Change',
+    'ui.select' => 'Select',
 
     'ui.summary' => 'Summary',
     'ui.not_set' => 'Not set',

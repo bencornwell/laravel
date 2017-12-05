@@ -17,4 +17,9 @@ class Organisation extends Model
         return $this->hasMany( FundingScheme::class );
     }
 
+    public function type( )
+    {
+        return $this->belongsTo( OrganisationType::class, 'organisation_type_id', 'id')->first( );
+    }
+
 }

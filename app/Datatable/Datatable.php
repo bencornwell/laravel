@@ -27,6 +27,14 @@ class Datatable {
         {
             $this->options["table_attributes"]["class"] = "table table-striped";
         }
+        if( array_key_exists( 'closures', $this->options ) )
+        {
+            $this->closures = $this->options["closures"];
+        }
+        if( array_key_exists( 'actions', $this->options ) )
+        {
+            $this->actions = $this->options["actions"];
+        }
 
         if( array_key_exists( 'columns', $this->options ) )
         {
@@ -49,6 +57,22 @@ class Datatable {
         return "<script>$('#".$this->id."').DataTable( );</script>";
     }
 
+    private function rowActions($item )
+    {
+        $ret;
+        foreach($this->actions as $method => $a )
+        {
+            $ret = $this->{$method}($item->{$a});
+        }
+       
+        return "<td>$ret</td>";
+    }
+    private function return_id($v)
+    {
+       return "<button type=\"button\" onClick=\"console.log('$v');\" class=\"btn btn-default\">".\Lang::get('messages.ui.select')."</button>";
+
+    }
+
     private function row($item)
     {
         $ret = "<tr>\r\n";
@@ -56,8 +80,21 @@ class Datatable {
         foreach( $this->columns as $c ) 
         {
             //TODO closure decorator functions etc.
-            $ret.= "<td>".$item->{$c}."</td>\r\n";
+            if ( array_key_exists( $c, $this->closures ) )
+            {
+                $c = $this->closures[$c];
+                $v = $c($item);
+            }
+            else 
+            {
+                $v = $item->{$c};
+            }
+            $ret.= "<td>".$v."</td>\r\n";
 
+        }
+        if( $this->actions )
+        {
+            $ret .= $this->rowActions($item);
         }
         $ret .= "</tr>\r\n";
         return $ret;
@@ -92,6 +129,10 @@ class Datatable {
         foreach($this->columnLabels as $l )
         {
             $ret .= "<th>".$l."</th>";
+        }
+        if($this->actions )
+        {
+            $ret .= "<th>&nbsp;</th>";
         }
         $ret .= "</thead>";
 

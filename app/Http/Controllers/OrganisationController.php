@@ -20,7 +20,8 @@ class OrganisationController extends Controller
         $table = Datatable::create( $organisations, [
             'columns' => ['id','name','organisation_type_id','country_id'],
             'column_labels' => ['ID', 'Name','Type','Country'],
-            'actions' => ['return_id' => 'id' ]
+            'closures' => ['organisation_type_id' => function($o){return $o->type()->name;} ],
+            'actions' => [ 'return_id' => 'id' ]
             ]);
         return view('organisation.modal', [ 'organisations' => $organisations, 'table' => $table ] );
     }
