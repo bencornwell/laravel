@@ -9,7 +9,7 @@
         {{ Form::label( 'lead_organisation_id', Lang::get( 'messages.ui.lead_organisation' ), [ 'class' => 'col-sm-3 control-label' ] ) }}
         <div class="col-sm-6">
             @if ($grant)
-                {{ $grant->leadOrganisation( )->first( )->name }} &nbsp;&nbsp;
+                <span id="lead_organisation_name">{{ $grant->leadOrganisation( )->first( )->name }}</span> &nbsp;&nbsp;
             @else
                 {{ Lang::get( 'messages.ui.not_set' ) }}
             @endif
@@ -36,11 +36,17 @@
         {{ Form::label( 'project_title', Lang::get( 'messages.ui.grant_program' ), ['class' => 'col-sm-3 control-label'] ) }}
         <div class="col-sm-9">
             @if ($grant)
-                {{ $grant->fundingRound( )->first( )->fullname( ) }} &nbsp;&nbsp; 
+                <span id="funding_round_full_name">{{ $grant->fundingRound( )->first( )->fullname( ) }} </span> &nbsp;&nbsp; 
             @else
                 {{ Lang::get('messages.ui.not_set' ) }}
            @endif
-           {{ Form::button( '<i class="fa fa-btn fa-edit"></i>' . Lang::get('messages.ui.change'), ['class' => 'btn btn-default'] ) }}
+           {{ Form::hidden( 'funding_round_id', null, ['id'=>'funding_round_id']) }}
+           {{ Form::button( '<i class="fa fa-btn fa-edit"></i>' . Lang::get('messages.ui.change'), ['class' => 'btn btn-default', 'id' => 'funding_round_change'] ) }}
+            <div id="funding_round_modal" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content"></div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="form-group">

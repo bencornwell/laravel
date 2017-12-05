@@ -40,8 +40,11 @@ Route::post('/grant/create', [ 'as' => 'grant.create', 'uses' => 'GrantControlle
 Route::get('/grant/edit/{grant}', 'GrantController@edit' );
 Route::post('/grant/edit/{grant}', [ 'as' => 'grant.edit', 'uses' => 'GrantController@update' ] );
 
-Route::get('/organisations/modal', [ 'as' => 'organisations.modal','uses' => 'OrganisationController@index' ] );
+Route::get('/organisations/modal', [ 'as' => 'organisations.modal','uses' => 'OrganisationController@indexModal' ] );
 Route::get('/organisations', 'OrganisationController@index' );
+Route::get('/organisation/{organisation}', 'OrganisationController@fetch' );
+
+Route::get('/fundinground/modal', [ 'as' => 'fundinground.modal','uses' => 'FundingRoundController@indexModal' ] );
 
 Route::get('/tasks', 'TaskController@index' );
 Route::post('/task','TaskController@store' );

@@ -69,6 +69,7 @@ return [
     'ui.transferred_out_date' => 'Transferred-Out Date',
     'ui.transferred_to' => 'Transferred To',
 
+    'ui.select_funding_round' => 'Select Funding Round and Scheme',
 
     'ui.investigators' => 'Investigators',
     'ui.organisations' => 'Organisations',

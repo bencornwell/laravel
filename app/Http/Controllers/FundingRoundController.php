@@ -4,9 +4,22 @@ namespace App\Http\Controllers;
 
 use App\FundingRound;
 use Illuminate\Http\Request;
+use App\Datatable\Datatable;
 
 class FundingRoundController extends Controller
 {
+    public function indexModal( )
+    {
+        $rounds = FundingRound::all( );
+        $table = Datatable::create( $rounds, [
+            'columns' => ['id','name','funding_scheme_id'],
+            'column_labels' => ['ID', 'Name','Type'],
+            //'closures' => ['organisation_type_id' => function($o){return $o->type()->name;} ],
+
+            'actions' => [ 'return_id' => 'id'  ]
+        ]);
+        return view('fundinground.modal', [ 'rounds' => $rounds, 'table' => $table ] );
+    }
     /**
      * Display a listing of the resource.
      *

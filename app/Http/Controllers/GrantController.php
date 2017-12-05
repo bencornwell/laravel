@@ -14,7 +14,6 @@ class GrantController extends Controller
     public function __construct(GrantRepository $grants)
     {
         $this->middleware('auth');
-
         $this->grants = $grants;
     }
 

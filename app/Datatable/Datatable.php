@@ -4,6 +4,13 @@ namespace App\Datatable;
 
 class Datatable {
 
+    protected $closures = [];
+    protected $options = [] ;
+    protected $columns = [];
+    protected $columnLabels = [];
+
+
+
     public static function create( $items, $options )
     {
         $ret = new Datatable( $items, $options );
@@ -69,7 +76,8 @@ class Datatable {
     }
     private function return_id($v)
     {
-       return "<button type=\"button\" onClick=\"console.log('$v');\" class=\"btn btn-default\">".\Lang::get('messages.ui.select')."</button>";
+        $onC = "$(modalResult).val($v);$(modalResult).change();$('#modal_close').trigger('click');";
+       return "<button type=\"button\" onClick=\"$onC\" class=\"btn btn-default\">".\Lang::get('messages.ui.select')."</button>";
 
     }
 

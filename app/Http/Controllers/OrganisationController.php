@@ -5,25 +5,38 @@ namespace App\Http\Controllers;
 use App\Organisation;
 use App\Datatable\Datatable;
 use Illuminate\Http\Request;
-
+use Response;
 
 class OrganisationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function indexModal()
     {
         $organisations = Organisation::all( );
         $table = Datatable::create( $organisations, [
             'columns' => ['id','name','organisation_type_id','country_id'],
             'column_labels' => ['ID', 'Name','Type','Country'],
             'closures' => ['organisation_type_id' => function($o){return $o->type()->name;} ],
-            'actions' => [ 'return_id' => 'id' ]
+            'actions' => [ 'return_id' => 'id'  ]
             ]);
         return view('organisation.modal', [ 'organisations' => $organisations, 'table' => $table ] );
+    }
+
+    public function fetch(Request $request, Organisation $organisation)
+    {
+        if($request->ajax()){
+        }
+
+            return Response::json($organisation);
+        //return view( 'organisation.fetch' );
     }
 
     /**
