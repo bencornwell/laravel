@@ -31,5 +31,15 @@ class FundingRoundTableSeeder extends Seeder
             'url' => 'http://www.arc.gov.au/',
             'agency_reference' => 'DP1601',
         ]);
+        DB::table('funding_rounds')->insert([
+            'id' => 3,
+            'name' => 'Medical Grant Round',
+            'funding_scheme_id' => 2,
+            'start_date' => '2016-01-01',
+            'end_date' => '2016-12-31',
+            'acgr' => 1,
+            'url' => 'http://www.nhmrc.gov.au/',
+            'agency_reference' => 'NHMRC1601',
+        ]);
     }
 }

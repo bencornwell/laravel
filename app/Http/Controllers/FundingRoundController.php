@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use App\FundingRound;
 use Illuminate\Http\Request;
 use App\Datatable\Datatable;
+use Response;
 
 class FundingRoundController extends Controller
 {
+    public function __construct( )
+    {
+        $this->middleware('auth');
+    }
     public function indexModal( )
     {
         $rounds = FundingRound::all( );
@@ -57,9 +62,9 @@ class FundingRoundController extends Controller
      * @param  \App\FundingRound  $fundingRound
      * @return \Illuminate\Http\Response
      */
-    public function show(FundingRound $fundingRound)
+    public function show(FundingRound $fundinground)
     {
-        //
+        return Response::json($fundinground);
     }
 
     /**

@@ -30,7 +30,7 @@ class OrganisationController extends Controller
         return view('organisation.modal', [ 'organisations' => $organisations, 'table' => $table ] );
     }
 
-    public function fetch(Request $request, Organisation $organisation)
+    public function show(Request $request, Organisation $organisation)
     {
         if($request->ajax()){
         }
@@ -56,17 +56,6 @@ class OrganisationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Organisation  $organisation
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Organisation $organisation)
     {
         //
     }
