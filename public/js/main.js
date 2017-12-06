@@ -10,8 +10,26 @@ $(document).ready( function() {
         });
     });
     $('#funding_round_change').click(function(){doModal({wrapper:'#funding_round_modal',url:'/fundinground/modal',target:'#funding_round_id'});});
-    $('#lead_organisation_id').on( 'change', function(e){
-            $('#funding_round_full_name').html('foo'); 
+    $('#funding_round_id').on( 'change', function(e){
+        var orgUrl = '/fundinground/'+$(this).val( );
+        var response = $.ajax({url:orgUrl, type:'GET'}).done(function(data){
+            $('#funding_round_full_name').html(data.fullname);
+            $('#funding_agency_name').html(data.agencyname);
+        });
+    });
+    $('#transferred_out_change').click(function(){doModal({wrapper:'#transferred_out_modal',url:'/organisations/modal',target:'#transferred_out_organisation_id'});});
+    $('#transferred_out_organisation_id').on( 'change', function(e){
+        var orgUrl = '/organisation/'+$(this).val( );
+        var response = $.ajax({url:orgUrl, type:'GET' }).done(function(data){ 
+            $('#transferred_out_organisation_name').html(data.name); 
+        });
+    });
+    $('#transferred_in_change').click(function(){doModal({wrapper:'#transferred_in_modal',url:'/organisations/modal',target:'#transferred_in_organisation_id'});});
+    $('#transferred_in_organisation_id').on( 'change', function(e){
+        var orgUrl = '/organisation/'+$(this).val( );
+        var response = $.ajax({url:orgUrl, type:'GET' }).done(function(data){ 
+            $('#transferred_in_organisation_name').html(data.name); 
+        });
     });
 });
 

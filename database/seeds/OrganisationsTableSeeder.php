@@ -43,5 +43,21 @@ class OrganisationsTableSeeder extends Seeder
             'address_province' => 'Automatic Captial Territory',
             'address_postcode' => '2222'
         ]);
+        DB::table('organisations')->insert([
+            'id' => 3,
+            'name' => 'New Health and Medicial Research Council',
+            'abbreviation' => 'NHMRC',
+            'organisation_type_id' => 3,
+            'country_id' => 99,
+            'url' => 'http://www.nhmrc.gov.au',
+            'phone_number' => '02 1234 5678',
+            'email_address' => 'foo@nhmrc.gov.au',
+            'fax' => '02 8765 4321',
+            'address_one' => 'Some Fancy Building Name',
+            'address_two'=> '2 Some Ave',
+            'address_city' => 'Canberra',
+            'address_province' => 'Automatic Captial Territory',
+            'address_postcode' => '2222'
+        ]);
     }
 }

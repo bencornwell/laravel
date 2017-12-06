@@ -26,7 +26,7 @@
         <label class="col-sm-3 control-label">{{ Lang::get( 'messages.ui.funding_agency' ) }}</label>
         <div class="col-sm-9">
             @if ($grant)
-                {{ $grant->fundingAgency( )->first( )->name }}
+                <span id="funding_agency_name">{{ $grant->fundingAgency( )->first( )->name }}</span>
             @else
                 {{ Lang::get( 'messages.ui.not_set' ) }}
             @endif
@@ -36,7 +36,7 @@
         {{ Form::label( 'project_title', Lang::get( 'messages.ui.grant_program' ), ['class' => 'col-sm-3 control-label'] ) }}
         <div class="col-sm-9">
             @if ($grant)
-                <span id="funding_round_full_name">{{ $grant->fundingRound( )->first( )->fullname( ) }} </span> &nbsp;&nbsp; 
+                <span id="funding_round_full_name">{{ $grant->fundingRound( )->first( )->getFullnameAttribute( ) }} </span> &nbsp;&nbsp; 
             @else
                 {{ Lang::get('messages.ui.not_set' ) }}
            @endif
@@ -104,10 +104,18 @@
         </div>
         {{ Form::label( 'transferred_in_organisation_id', Lang::get('messages.ui.transferred_from'), ['class' => 'col-sm-3 control-label'] ) }}
         <div class="col-sm-3">
+            <span id="transferred_in_organisation_name">
             @if ($grant and $grant->transferredFromOrganisation( )->first( )) 
-                {{ $grant->transferredFromOrganisation( )->first( )->name }} &nbsp;&nbsp;
+                {{ $grant->transferredFromOrganisation( )->first( )->name }}
             @endif
-            {{ Form::button( '<i class="fa fa-btn fa-edit"></i>' . Lang::get('messages.ui.change'), ['class' => 'btn btn-default'] ) }}
+            </span>
+            {{ Form::hidden( 'transferred_in_organisation_id', null ) }}
+            {{ Form::button( '<i class="fa fa-btn fa-edit"></i>' . Lang::get('messages.ui.change'), ['class' => 'btn btn-default', 'id' => 'transferred_in_change'] ) }}
+            <div id="transferred_in_modal" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content"></div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="form-group">
@@ -117,10 +125,18 @@
         </div>
         {{ Form::label( 'transferred_out_organisation_id', Lang::get('messages.ui.transferred_to'), ['class' => 'col-sm-3 control-label'] ) }}
         <div class="col-sm-3">
+            <span id="transferred_out_organisation_name">
             @if ($grant and $grant->transferredToOrganisation( )->first( )) 
-                {{ $grant->transferredToOrganisation( )->first( )->name }} &nbsp;&nbsp;
+                {{ $grant->transferredToOrganisation( )->first( )->name }}
             @endif
-            {{ Form::button( '<i class="fa fa-btn fa-edit"></i>' . Lang::get('messages.ui.change'), ['class' => 'btn btn-default'] ) }}
+            </span>
+            {{ Form::hidden( 'transferred_out_organisation_id', null ) }}
+            {{ Form::button( '<i class="fa fa-btn fa-edit"></i>' . Lang::get('messages.ui.change'), ['class' => 'btn btn-default', 'id' => 'transferred_out_change'] ) }}
+            <div id="transferred_out_modal" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content"></div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -42,9 +42,10 @@ Route::post('/grant/edit/{grant}', [ 'as' => 'grant.edit', 'uses' => 'GrantContr
 
 Route::get('/organisations/modal', [ 'as' => 'organisations.modal','uses' => 'OrganisationController@indexModal' ] );
 Route::get('/organisations', 'OrganisationController@index' );
-Route::get('/organisation/{organisation}', 'OrganisationController@fetch' );
+Route::get('/organisation/{organisation}', 'OrganisationController@show' );
 
 Route::get('/fundinground/modal', [ 'as' => 'fundinground.modal','uses' => 'FundingRoundController@indexModal' ] );
+Route::get('/fundinground/{fundinground}', 'FundingRoundController@show' );
 
 Route::get('/tasks', 'TaskController@index' );
 Route::post('/task','TaskController@store' );

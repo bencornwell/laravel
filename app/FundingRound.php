@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class FundingRound extends Model
 {
+    protected $appends = [ 'fullname', 'agencyname' ];
     //
     public function fundingScheme( )
     {
@@ -21,8 +22,12 @@ class FundingRound extends Model
         return $this->hasMany( Grant::class );
     }
 
-    public function fullname( )
+    public function getFullnameAttribute( )
     {
         return sprintf( "%s / %s", $this->fundingScheme->name, $this->name );
+    }
+    public function getAgencynameAttribute( )
+    {
+        return $this->fundingAgency( )->first( )->name;
     }
 }
