@@ -8,11 +8,13 @@
     <div class="form-group">
         {{ Form::label( 'lead_organisation_id', Lang::get( 'messages.ui.lead_organisation' ), [ 'class' => 'col-sm-3 control-label' ] ) }}
         <div class="col-sm-6">
+            <span id="lead_organisation_name">
             @if ($grant)
-                <span id="lead_organisation_name">{{ $grant->leadOrganisation( )->first( )->name }}</span> &nbsp;&nbsp;
+		{{ $grant->leadOrganisation( )->first( )->name }}
             @else
                 {{ Lang::get( 'messages.ui.not_set' ) }}
             @endif
+	    </span>&nbsp;&nbsp;
             {{ Form::hidden( 'lead_organisation_id', null ) }}
             {{ Form::button( '<i class="fa fa-btn fa-edit"></i>' . Lang::get('messages.ui.change'), ['class' => 'btn btn-default', 'id' => 'lead_organisation_change'  ] ) }}
             <div id="lead_organisation_modal" class="modal fade" tabindex="-1" role="dialog">
@@ -25,21 +27,25 @@
     <div class="form-group">
         <label class="col-sm-3 control-label">{{ Lang::get( 'messages.ui.funding_agency' ) }}</label>
         <div class="col-sm-9">
+	    <span id="funding_agency_name">
             @if ($grant)
-                <span id="funding_agency_name">{{ $grant->fundingAgency( )->first( )->name }}</span>
+                {{ $grant->fundingAgency( )->first( )->name }}
             @else
                 {{ Lang::get( 'messages.ui.not_set' ) }}
             @endif
+	    </span>&nbsp;&nbsp;
         </div>
     </div>
     <div class="form-group">
         {{ Form::label( 'project_title', Lang::get( 'messages.ui.grant_program' ), ['class' => 'col-sm-3 control-label'] ) }}
         <div class="col-sm-9">
+	    <span id="funding_round_full_name">
             @if ($grant)
-                <span id="funding_round_full_name">{{ $grant->fundingRound( )->first( )->getFullnameAttribute( ) }} </span> &nbsp;&nbsp; 
+                {{ $grant->fundingRound( )->first( )->getFullnameAttribute( ) }}
             @else
                 {{ Lang::get('messages.ui.not_set' ) }}
            @endif
+	   </span>&nbsp;&nbsp;
            {{ Form::hidden( 'funding_round_id', null, ['id'=>'funding_round_id']) }}
            {{ Form::button( '<i class="fa fa-btn fa-edit"></i>' . Lang::get('messages.ui.change'), ['class' => 'btn btn-default', 'id' => 'funding_round_change'] ) }}
             <div id="funding_round_modal" class="modal fade" tabindex="-1" role="dialog">

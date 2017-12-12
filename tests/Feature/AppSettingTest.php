@@ -28,12 +28,7 @@ class AppSettingTest extends TestCase
     {
         $user = factory(\App\User::class)->create( );
         $user->id = 2;
-        //$role = factory(\App\Role::class)->create( );
-        //$user = \Mockery::mock('User');
-        //$user->shouldReceive('isAdmin')->twice()->andReturn(true);
-        //$user->roles = 2;
         $this->be($user);
-
 
         $response = //$this->actingAs($user )// , 'ben@bencornwell.com')
                        $this->get('/appsettings' );

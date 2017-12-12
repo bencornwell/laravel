@@ -25,11 +25,12 @@ class Grant extends Model
         'transferred_out_date',
         'transferred_out_organisation_id',
     ];
-	protected $guarded = [
+    protected $guarded = [
         'user_id',
 	];
     protected $dates = [
         'application_date',
+	'funder_decision_date',
         'planned_start_date',
         'planned_end_date',
         'actual_end_date',
@@ -38,84 +39,35 @@ class Grant extends Model
         'transferred_out_date',
     ];
 
+    
+
     public static $rules = [
-		'project_title' => 'required|max:65535',
+	'project_title' => 'required|max:65535',
         'project_description' => 'required|max:65535',
         'status_id' => 'required|integer|exists:statuses,id',
         'application_date' => 'required|date',
+        'lead_organisation_id' => 'required',
+        'funding_round_id' => 'required',
+        'funding_agency_reference' => 'required',
+	'transferred_in_date' => 'required_with:transferred_in_organisation_id',
+	'transferred_in_organisation_id' => 'required_with:transferred_in_date',
+	'transferred_out_date' => 'required_with:transferred_out_organisation_id',
+	'transferred_out_organisation_id' => 'required_with:transferred_out_date',
 	];
-
-    public function getTransferredOutDateAttribute( )
+    
+    public function setAttribute( $name, $value )
     {
-        return $this->getDate($this->attributes["transferred_out_date"]);
+	parent::setAttribute( $name, 
+	    ( !in_array( $name, $this->dates ) || is_null( $value ) ) ? 
+	    $value : Carbon::createFromFormat( 'd/m/Y', $value ) 
+	);
     }
-    public function setTransferredOutDateAttribute( $value )
+    public function getAttribute( $name )
     {
-        $this->attributes["transferred_out_date"] = $this->setDate( $value );
-    }
-    public function getTransferredInDateAttribute( )
-    {
-        return $this->getDate($this->attributes["transferred_in_date"]);
-    }
-    public function setTransferredInDateAttribute( $value )
-    {
-        $this->attributes["transferred_in_date"] = $this->setDate( $value );
-    }
-    public function getRelinquishedDateAttribute( )
-    {
-        return $this->getDate($this->attributes["relinquished_date"]);
-    }
-    public function setRelinquishedDateAttribute( $value )
-    {
-        $this->attributes["relinquished_date"] = $this->setDate( $value );
-    }
-    public function getActualEndDateAttribute( )
-    {
-        return $this->getDate($this->attributes["actual_end_date"]);
-    }
-    public function setActualEndDateAttribute( $value )
-    {
-        $this->attributes["actual_end_date"] = $this->setDate( $value );
-    }
-    public function getPlannedEndDateAttribute( )
-    {
-        return $this->getDate($this->attributes["planned_end_date"]);
-    }
-    public function setPlannedEndDateAttribute( $value )
-    {
-        $this->attributes["planned_end_date"] = $this->setDate( $value );
-    }
-    public function getPlannedStartDateAttribute( )
-    {
-        return $this->getDate($this->attributes["planned_start_date"]);
-    }
-    public function setPlannedStartDateAttribute( $value )
-    {
-        $this->attributes["planned_start_date"] = $this->setDate( $value );
-    }
-    public function getFunderDecisionDateAttribute( )
-    {
-        return $this->getDate($this->attributes["funder_decision_date"]);
-    }
-    public function setFunderDecisionDateAttribute($value )
-    {
-        $this->attributes["funder_decision_date"] = $this->setDate( $value );
-    }
-    public function getApplicationDateAttribute( )
-    {
-        return $this->getDate($this->attributes["application_date"]);
-    }
-    public function setApplicationDateAttribute( $value )
-    {
-        $this->attributes["application_date"] = $this->setDate( $value );
-    }
-    private function setDate( $date )
-    {
-        return Carbon::createFromFormat( 'd/m/Y', $date );
-    }
-    private function getDate( $date )
-    {
-        return Carbon::parse($date)->format('d/m/Y');
+	$value = parent::getAttribute($name);
+	return ( !in_array($name,$this->dates ) || is_null($value ) )? 
+		$value : 
+		Carbon::parse($value)->format('d/m/Y');
     }
     public function status( )
     {

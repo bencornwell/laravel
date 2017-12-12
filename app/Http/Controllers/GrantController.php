@@ -37,8 +37,6 @@ class GrantController extends Controller
         
         $grant = new Grant( );
         $grant->fill( $request->all( ) );
-        $grant->funding_round_id = 1;
-        $grant->funding_agency_reference = 1;
         $grant->user_id = $request->user( )->id;
         $grant->save( );
 
